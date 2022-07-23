@@ -1,0 +1,25 @@
+INPUT = "@pitchfork_DOXYGEN_INPUT_DIR@"
+
+OUTPUT_DIRECTORY = "@CMAKE_CURRENT_BINARY_DIR@"
+
+PROJECT_NAME = "@CMAKE_PROJECT_NAME@"
+
+PROJECT_NUMBER = "@CMAKE_PROJECT_VERSION@"
+
+# ---
+
+EXCLUDE_PATTERNS  = */build/*
+EXCLUDE_PATTERNS += */tests/*
+EXCLUDE_PATTERNS += *_test.cxx
+
+PROJECT_BRIEF          = "A CMake implementation of the pitchfork layout"
+
+OUTPUT_LANGUAGE        = English
+
+RECURSIVE              = YES
+
+GENERATE_LATEX         = NO
+
+GENERATE_TREEVIEW      = YES
+
+DISABLE_INDEX          = NO

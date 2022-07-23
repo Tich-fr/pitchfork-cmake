@@ -1,0 +1,4 @@
+set(CPACK_PACKAGE_VENDOR "Timothee CHABAT")
+
+# For more customization (choose which targets to pack, icons for the installer, ...),
+# see https://cmake.org/cmake/help/book/mastering-cmake/chapter/Packaging%20With%20CPack.html
