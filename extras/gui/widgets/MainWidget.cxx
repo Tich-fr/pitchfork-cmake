@@ -10,7 +10,7 @@ namespace pf::widgets {
 MainWidget::MainWidget(QWidget* parent)
   : QLabel(parent)
 {
-  const QString value = QString::number(this->graph_.value());
+  const QString value = QString::number(_graph.value());
   this->setText("Hello World!\nCurrent Calue is " + value);
 
   constexpr int MARGIN = 20;

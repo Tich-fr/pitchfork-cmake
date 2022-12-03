@@ -17,7 +17,7 @@ public:
   explicit MainWidget(QWidget* parent = nullptr);
 
 private:
-  pf::dag::Graph graph_;
+  pf::dag::Graph _graph;
 };
 
 }  // namespace pf::widgets

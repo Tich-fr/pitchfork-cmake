@@ -7,13 +7,13 @@ namespace pf::dag {
 //-----------------------------------------------------------------------------
 int Graph::value() const
 {
-  return this->value_;
+  return _value;
 }
 
 //-----------------------------------------------------------------------------
 int Graph::my_method(Node& node) const
 {
   node.increment();
-  return node.value() + this->value_;
+  return node.value() + _value;
 }
 }  // namespace pf::dag

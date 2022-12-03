@@ -7,12 +7,12 @@ namespace pf::dag {
 //-----------------------------------------------------------------------------
 int Node::value() const
 {
-  return this->value_;
+  return _value;
 }
 
 //-----------------------------------------------------------------------------
 void Node::increment()
 {
-  this->value_++;
+  _value++;
 }
 }  // namespace pf::dag

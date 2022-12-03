@@ -21,14 +21,14 @@ public:
   /// the sum of its new value and the value of the graph.
   ///
   /// @param[out] node dummy output parameter
-  /// @return Graph::value_ + node.value()
+  /// @return Graph::_value + node.value()
   int my_method(Node& node) const;
 
-  /// @return Graph::value_
+  /// @return Graph::_value
   [[nodiscard]] int value() const;
 
 private:
-  int value_ = 1;  //< some useless integer value
+  int _value = 1;  //< some useless integer value
 };
 
 }  // namespace pf::dag

@@ -23,7 +23,7 @@ CheckOptions:
     value:           lower_case
   - key:             readability-identifier-naming.MemberCase
     value:           lower_case
-  - key:             readability-identifier-naming.PrivateMemberSuffix
+  - key:             readability-identifier-naming.PrivateMemberPrefix
     value:           _
 
   - key:             readability-identifier-naming.AggressiveDependentMemberLookup

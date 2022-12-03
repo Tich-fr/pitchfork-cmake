@@ -13,7 +13,7 @@ namespace pf::dag {
 class Node {
 public:
 
-  /// @return Graph::value_
+  /// @return Graph::_value
   [[nodiscard]] int value() const;
 
   /// @brief dummy method
@@ -22,7 +22,7 @@ public:
   void increment();
 
 private:
-  int value_ = 1;  //< some useless integer value
+  int _value = 1;  //< some useless integer value
 };
 
 }  // namespace pf::dag
