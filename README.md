@@ -47,14 +47,13 @@ is a good thing or not but since I didn't find any corner case where this is ann
 This repo is mainly designed to be a complex example to either browse or directly copy-paste to start a new project.
 There are however a few files that are worth mentioning because they contains usefull comments and/or design principles :
 
-- (README.md)[README.md] : this README of course :)
-- (CMakeLists.txt)[CMakeLists.txt] : for how to setup, install and package a project
-- (libs/core/CMakeLists.txt)[libs/core/CMakeLists.txt] : for how to setup and install a target
-- (docs/CMakeLists.txt)[docs/CMakeLists.txt] : for how to build a doxygen doc with CMake
+- [README.md](README.md) : this README of course :)
+- [CMakeLists.txt](CMakeLists.txt) : for how to setup, install and package a project
+- [libs/core/CMakeLists.txt](libs/core/CMakeLists.txt) : for how to setup and install a target
+- [docs/CMakeLists.txt](docs/CMakeLists.txt) : for how to build a doxygen documentation using CMake
 
-What I also want to remind is that files such as `.clang-format`, `.clang-tidy`, `.gitignore` or the `LICENSE` for example
-are not noise that has been added just for fun : they are a full part of this project and should be considered like so when
-creating your own project.
+Also, files such as `.clang-format`, `.clang-tidy`, `.gitignore` or the `LICENSE` for example are not noise that has been
+added for fun : they are a full part of this project and should be considered like so when creating your own project.
 
 ## List of goals of the repository
 
