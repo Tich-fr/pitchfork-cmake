@@ -17,6 +17,8 @@ set(pitchfork_bin_includedir "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_INCLUDEDIR}")
 include(CTest)
 add_subdirectory(libs)
 
+add_subdirectory(extras)
+
 option(BUILD_DOCUMENTATION "Build documentation tree" OFF)
 if(BUILD_DOCUMENTATION)
   add_subdirectory(docs)
@@ -26,6 +28,29 @@ option(BUILD_EXAMPLES "Build examples tree" OFF)
 if(BUILD_EXAMPLES)
   add_subdirectory(examples)
 endif()
+
+# Configuration files and installation
+# Configuration is done via the `tools/cmake/config.cmake.in` file
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+  "${PROJECT_SOURCE_DIR}/tools/cmake/config.cmake.in" "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}Config.cmake"
+  INSTALL_DESTINATION
+    "${CMAKE_INSTALL_LIBDIR}/cmake/${CMAKE_PROJECT_NAME}"
+  )
+
+write_basic_package_version_file(
+  "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}ConfigVersion.cmake"
+  VERSION "${CMAKE_PROJECT_VERSION}"
+  COMPATIBILITY SameMajorVersion
+  )
+
+install(
+  FILES
+    "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}Config.cmake"
+    "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION
+    "${CMAKE_INSTALL_LIBDIR}/cmake/${CMAKE_PROJECT_NAME}"
+  )
 
 # Packaging
 # Configuration is done via the `tools/cmake/cpack.cmake.in` file

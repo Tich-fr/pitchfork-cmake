@@ -51,7 +51,7 @@ is a good thing or not but since I didn't find any corner case where this is ann
 - [x] show simple testing using CTest
 - [x] show simple packaging using CPack
 - [ ] implement a more complex pitchfork layout
-  - [ ] add an `extras/` directory for holding optional submodules disabled by defaults
+  - [x] add an `extras/` directory for holding optional submodules disabled by defaults
   - [x] add a `data/` folder
   - [ ] add an `external/` folder
   - [ ] add integration tests
@@ -101,7 +101,7 @@ and that I'd like to integrate in this project as well :
 |  |  |  Class1.h           -> Header of the class Class1 of the current submodule.
 |  |  |  Class1_test.cxx    -> Unit test for the class Class1 of the current submodule.
 |  |  |  ...
-|  |  └─ namespace1/        -> Subdirectories in submodules are allowed but must represent namespaces.
+|  |  └─ namespace1/        -> Subdirectories in submodules are allowed but should represent namespaces.
 |  |  |  |  CMakeLists.txt  -> Each namespace will be built as an OBJECT library. All namespace OBJECTs will be then aggregated by their parent submodule.
 |  |  |  |  Class1.cxx      -> Classes follow the same naming pattern that for submodules (see above).
 |  |  |  └─ ...
