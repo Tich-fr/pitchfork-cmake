@@ -74,8 +74,9 @@ creating your own project.
 Some additional features unrelated to the pitchfork layout but that should exists for every open-source C++ project (imo) :
 
 - [x] complete Clang configuration to keep the code base readable, consistent in time and warning/error free
-- [x] use of a testing framework for more comprehensive testing (Catch2 in this case)
+- [x] use a testing framework for more comprehensive testing (Catch2 in this case)
 - [x] generate API documentation with Doxygen
+- [x] use SPDX headers in source files in order to track licensing and copyright informations
 - [ ] simple CI integration (either using [GitHub Actions](https://docs.github.com/en/actions), [SonarCloud](https://www.sonarsource.com/products/sonarcloud/) or both)
   - [ ] basic pipeline using CTest
   - [ ] documentation and installation testing

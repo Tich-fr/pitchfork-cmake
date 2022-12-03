@@ -1,3 +1,5 @@
+# Copyright 2022, Timothee Chabat
+# SPDX-License-Identifier: MIT
 
 # =============================================================================
 # Function: split_unit_files

@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Timothee Chabat <timo.chabat@gmail.com>
+// SPDX-License-Identifier: MIT
+
 #ifndef pitchforkGraph_h
 #define pitchforkGraph_h
 

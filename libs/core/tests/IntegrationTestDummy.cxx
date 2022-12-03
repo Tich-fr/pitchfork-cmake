@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2022 Timothee Chabat <timo.chabat@gmail.com>
+// SPDX-License-Identifier: MIT
+
 #include "pitchfork/Graph.h"
 #include "pitchfork/Node.h"
 #include "pitchfork/Point.h"
