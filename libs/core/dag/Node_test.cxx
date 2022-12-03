@@ -1,24 +1,18 @@
 #include "Node.h"
 
-#include <iostream>
+#include <catch2/catch_session.hpp>
+#include <catch2/catch_test_macros.hpp>
 
-int Node_test(int /*argc*/, char** /*argv*/)
+TEST_CASE("Dummy Node test", "[pf::dag::Node]")
 {
-  int status = 0;
+    pf::dag::Node node;
+    REQUIRE(node.value() == 1);
 
-  pf::dag::Node node;
-  int current_value = node.value();
-  if (current_value != 1) {
-    std::cerr << "ERROR: inital Node::value is wrong" << std::endl;
-    status++;
-  }
+    node.increment();
+    REQUIRE(node.value() == 2);
+}
 
-  node.increment();
-  if (node.value() != (current_value + 1))
-  {
-    std::cerr << "ERROR: inital Node::increment did not increment" << std::endl;
-    status++;
-  }
-
-  return status;
+int Node_test(int argc, char** argv)
+{
+  return Catch::Session().run( argc, argv );
 }

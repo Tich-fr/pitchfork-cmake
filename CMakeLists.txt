@@ -13,8 +13,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(GNUInstallDirs)
 set(pitchfork_bin_includedir "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_INCLUDEDIR}")
 
-# Handle sub directories
 include(CTest)
+
+# Handle sub directories
+add_subdirectory(external)
+
 add_subdirectory(libs)
 
 add_subdirectory(extras)

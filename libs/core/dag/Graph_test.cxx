@@ -1,24 +1,19 @@
 #include "Graph.h"
-
-#include <iostream>
 #include "Node.h"
 
-int Graph_test(int /*argc*/, char** /*argv*/)
+#include <catch2/catch_session.hpp>
+#include <catch2/catch_test_macros.hpp>
+
+TEST_CASE("Dummy Graph test", "[pf::dag::Graph]")
 {
-  int status = 0;
+    pf::dag::Graph graph;
+    REQUIRE(graph.value() == 1);
 
-  pf::dag::Graph graph;
-  if (graph.value() != 1) {
-    std::cerr << "ERROR: inital Graph::value is wrong" << std::endl;
-    status++;
-  }
+    pf::dag::Node node;
+    REQUIRE(graph.my_method(node) == 3);
+}
 
-  pf::dag::Node node;
-  if (graph.my_method(node) != 3)
-  {
-    std::cerr << "ERROR: inital Graph::my_method is wrong" << std::endl;
-    status++;
-  }
-
-  return status;
+int Graph_test(int argc, char** argv)
+{
+  return Catch::Session().run( argc, argv );
 }

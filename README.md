@@ -53,14 +53,14 @@ is a good thing or not but since I didn't find any corner case where this is ann
 - [ ] implement a more complex pitchfork layout
   - [x] add an `extras/` directory for holding optional submodules disabled by defaults
   - [x] add a `data/` folder
-  - [ ] add an `external/` folder
+  - [x] add an `external/` folder
   - [ ] add integration tests
 
 Some additional features unrelated to the pitchfork layout but that I find mandatory for each C++ project
 and that I'd like to integrate in this project as well :
 
 - [x] complete Clang configuration to keep the code base readable, consistent in time and warning/error free
-- [ ] use of a testing framework for more comprehensive testing (GTest, Catch2)
+- [x] use of a testing framework for more comprehensive testing (Catch2 in this case)
 - [x] generate API documentation with Doxygen
 - [x] make each submodule of the library a CMake `COMPONENT` (in the `find_package` meaning)
 - [ ] define a `CodeCoverage` CMake configuration to be able to quickly compile the library for code coverage

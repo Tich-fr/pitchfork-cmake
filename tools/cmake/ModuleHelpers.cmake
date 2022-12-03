@@ -67,7 +67,10 @@ function(aggregate_unit_tests submoduleName testList)
     )
 
   add_executable(${testName} ${tests})
-  target_link_libraries(${testName} PRIVATE ${submoduleName})
+  target_link_libraries(${testName}
+    PRIVATE
+      ${submoduleName}
+      Catch2::Catch2)
   remove(tests "${testName}.cxx")
 
   foreach(test ${tests})
