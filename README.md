@@ -50,11 +50,11 @@ is a good thing or not but since I didn't find any corner case where this is ann
   - [x] export targets, library configuration and version
 - [x] show simple testing using CTest
 - [x] show simple packaging using CPack
-- [ ] implement a more complex pitchfork layout
+- [x] implement a complete pitchfork layout
   - [x] add an `extras/` directory for holding optional submodules disabled by defaults
-  - [x] add a `data/` folder
-  - [x] add an `external/` folder
-  - [ ] add integration tests
+  - [x] add a `data/` folder for holding any data that is not code-related
+  - [x] add an `external/` folder that handles third-party libraries
+  - [x] add integration tests
 
 Some additional features unrelated to the pitchfork layout but that I find mandatory for each C++ project
 and that I'd like to integrate in this project as well :

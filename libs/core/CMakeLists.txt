@@ -38,6 +38,11 @@ set_target_properties(${target_name} PROPERTIES
   EXPORT_NAME pitchfork::core
   )
 
+# Add integration tests for this module
+if (BUILD_TESTING)
+  add_subdirectory(tests)
+endif()
+
 # install libs and headers
 set(exportName "${target_name}Config")
 install(TARGETS ${target_name}
