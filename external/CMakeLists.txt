@@ -10,3 +10,4 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Catch2)
 # Make Catch2 CMake functions available, as of v3.1.1
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+include(Catch)

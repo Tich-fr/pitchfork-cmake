@@ -39,8 +39,8 @@ function(split_unit_files)
       list(APPEND classes "${unit}.cxx")
       list(APPEND headers "${unit}.h")
 
-      if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${unit}_test.cxx")
-        list(APPEND tests "${unit}_test.cxx")
+      if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${unit}.test.cxx")
+        list(APPEND tests "${unit}.test.cxx")
       endif()
     endif()
   endforeach()
@@ -53,28 +53,23 @@ endfunction()
 # =============================================================================
 # Function: aggregate_unit_tests
 #
-# Merge a list of test files into a single executable.
+# Register a list of unitary test file against CTest and create their executable
 #
 # In:
 #   (1:submoduleName) name of the module these tests belongs to
 #   (2:testList) all unit tests, as a list
 # -----------------------------------------------------------------------------
-function(aggregate_unit_tests submoduleName testList)
-  set(testName "${submoduleName}_unitTests")
-  create_test_sourcelist(
-    tests "${testName}.cxx"
-    ${testList}
-    )
+function(register_unit_tests submoduleName testList)
+  message( "inside ${testList}" )
+  foreach(testFile ${testList})
+    get_filename_component(className ${testFile} NAME_WE)
+    set(testName "${submoduleName}_${className}")
 
-  add_executable(${testName} ${tests})
-  target_link_libraries(${testName}
-    PRIVATE
-      ${submoduleName}
-      Catch2::Catch2)
-  remove(tests "${testName}.cxx")
-
-  foreach(test ${tests})
-    get_filename_component(fName ${test} NAME_WE)
-    add_test(NAME ${fName} COMMAND ${testName} ${fName})
+    add_executable(${testName} ${testFile})
+    target_link_libraries(${testName}
+      PRIVATE
+        ${submoduleName}
+        Catch2::Catch2WithMain)
+    catch_discover_tests(${testName})
   endforeach ()
 endfunction()

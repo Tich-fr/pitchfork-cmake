@@ -24,7 +24,7 @@ set_target_properties(${target_name} PROPERTIES
   )
 
 if (BUILD_TESTING)
-  aggregate_unit_tests(${target_name} "${tests}")
+  register_unit_tests(${target_name} "${tests}")
 endif()
 
 install(TARGETS ${target_name}

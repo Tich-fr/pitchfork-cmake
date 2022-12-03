@@ -66,9 +66,6 @@ and that I'd like to integrate in this project as well :
 - [ ] define a `CodeCoverage` CMake configuration to be able to quickly compile the library for code coverage
 - [ ] showcase simple CI integration (either using [GitHub Actions](https://docs.github.com/en/actions), [SonarCloud](https://www.sonarsource.com/products/sonarcloud/) or both)
 - [ ] use of git hooks allowing to enforce clear and usefull commit messages (see https://www.conventionalcommits.org/en/v1.0.0/)
-- [ ] cleanup unit test names : from the documentation of the pitchfork layout unit tests should be named `MyClass.test.cxx`. However due to limitation of the
-`create_test_sourcelist` CMake function this is not currenlty possible. Two possible solution : either fix the bug upstream and wait for a release, or create an executable per unit test
-(but this could result in a lot of executables for large projects).
 
 ## Layout explanation
 
