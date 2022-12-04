@@ -5,7 +5,7 @@
 
 namespace pf::dag {
 //-----------------------------------------------------------------------------
-int Node::value() const
+auto Node::value() const -> int
 {
   return _value;
 }

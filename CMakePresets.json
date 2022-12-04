@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 19,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default Config",
+      "description": "Default build configuration, ensure build location and use of Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "dev",
+      "inherits": "default",
+      "displayName": "Dev Config",
+      "description": "Developer configuration with all warnings enabled",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wshadow -Wpedantic -Wundef",
+        "BUILD_TESTING": "ON"
+      }
+    },
+    {
+      "name": "testing",
+      "inherits": "default",
+      "displayName": "Test Config",
+      "description": "Testing configuration for running tests and/or clang-tidy",
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wshadow -Wpedantic -Wundef",
+        "BUILD_EXAMPLES": "ON",
+        "BUILD_TESTING": "ON",
+        "CPACK_INCLUDE_TOPLEVEL_DIRECTORY": "OFF"
+      }
+    }
+  ]
+}

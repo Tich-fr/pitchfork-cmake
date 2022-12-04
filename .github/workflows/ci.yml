@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches:
+      - master
+
+jobs:
+
+  # ---------------------------------------------------------------------------
+  tests:
+    if: github.event.pull_request.draft == false
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        # os: [ubuntu-latest, windows-latest, macos-latest] for some reason Mac and Windows does not work, TODO
+
+    runs-on: ${{matrix.os}}
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Configure
+      run: cmake -Werror=dev -Werror=deprecated --warn-uninitialized --preset testing
+
+    - name: Build
+      run: cmake --build build --parallel 2
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -j 2 --output-on-failure || ctest -j 1 --rerun-failed -VV
+
+    - name: Install
+      run: cmake --install build
+
+    - name: Build Against Build
+      run: |
+        cmake -Werror=dev -Werror=deprecated --warn-uninitialized -Bbuild_build -Sexamples/simple -Dpitchfork_DIR:PATH=$(pwd)/build
+        cmake --build build_build
+        build_build/SimplePitchforkExample
+
+    - name: Build Against Install
+      run: |
+        cmake -Werror=dev -Werror=deprecated --warn-uninitialized -Bbuild_install -Sexamples/simple -Dpitchfork_DIR:PATH=$(pwd)/install/lib/cmake/pitchfork
+        cmake --build build_install
+        build_install/SimplePitchforkExample
+
+    - name: Packaging
+      working-directory: ${{github.workspace}}/build
+      run: cpack
+
+    - name: Check Packaging Linux
+      if: matrix.os == 'ubuntu-latest'
+      working-directory: ${{github.workspace}}
+      run: |
+        mkdir package
+        tar -xzvf ./build/pitchfork-*.tar.gz -C ./package/
+        cmake -Werror=dev -Werror=deprecated --warn-uninitialized -Bbuild_sdk -Sexamples/simple -Dpitchfork_DIR:PATH=$(pwd)/package/lib/cmake/pitchfork
+        cmake --build build_sdk
+        build_sdk/SimplePitchforkExample
+
+  # ---------------------------------------------------------------------------
+  linter-check:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure
+        run: cmake -Werror=dev -Werror=deprecated --warn-uninitialized --preset testing
+
+      - name: Run Linter
+        uses: cpp-linter/cpp-linter-action@v2
+        id: linter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          style: file
+          tidy-checks: '' # only rely on file
+          database: ${{github.workspace}}/build
+          ignore: 'extras' # for now we ignore those because they are not compiled thus reports are not relevant
+
+      - name: Linter Result
+        if: steps.linter.outputs.checks-failed > 0
+        run: exit 1

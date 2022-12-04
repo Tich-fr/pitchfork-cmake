@@ -6,8 +6,14 @@ target_link_libraries(Cutlery
   PUBLIC
     pitchfork::widgets)
 
+if (APPLE)
+  set(rbase "@executable_path")
+else ()
+  set(rbase "$ORIGIN")
+endif ()
 set_target_properties(Cutlery PROPERTIES
   VERSION ${CMAKE_PROJECT_VERSION}
+  INSTALL_RPATH "${rbase}/../${CMAKE_INSTALL_LIBDIR}"
   )
 
 set(exportName "CutleryConfig")

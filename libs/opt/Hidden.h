@@ -11,9 +11,8 @@ namespace pf {
 /// (bla bla bla)
 class Hidden {
 public:
-
   /// @return Hidden::_value
-  [[nodiscard]] int my_method() const;
+  [[nodiscard]] auto my_method() const -> int;
 
 private:
   int _value = 1;
