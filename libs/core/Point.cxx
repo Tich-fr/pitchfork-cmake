@@ -2,11 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 #include "Point.h"
+#include <pitchfork/Node.h>
 
 namespace pf {
 //-----------------------------------------------------------------------------
-int Point::my_method() const
+auto Point::my_method() const -> int
 {
-  return _value;
+  return Value;
 }
 }  // namespace pf

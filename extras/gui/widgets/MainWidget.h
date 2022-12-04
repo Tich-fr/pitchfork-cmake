@@ -11,7 +11,7 @@
 namespace pf::widgets {
 
 class MainWidget : public QLabel {
-  Q_OBJECT //NOLINT
+  Q_OBJECT 
 
 public:
   explicit MainWidget(QWidget* parent = nullptr);

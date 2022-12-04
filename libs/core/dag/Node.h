@@ -12,9 +12,8 @@ namespace pf::dag {
 /// (bla bla bla).
 class Node {
 public:
-
   /// @return Graph::_value
-  [[nodiscard]] int value() const;
+  [[nodiscard]] auto value() const -> int;
 
   /// @brief dummy method
   ///

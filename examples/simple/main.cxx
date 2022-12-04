@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-int main(int /*argc*/, char** /*argv*/)
+auto main(int /*argc*/, char** /*argv*/) -> int
 {
   pf::dag::Graph graph;
   pf::dag::Node node;

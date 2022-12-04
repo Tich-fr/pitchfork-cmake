@@ -4,6 +4,8 @@
 #ifndef pitchforkPoint_h
 #define pitchforkPoint_h
 
+#include <pitchfork/Graph.h>
+
 namespace pf {
 
 /// @brief represent a point in a 3D space
@@ -11,12 +13,11 @@ namespace pf {
 /// (bla bla bla)
 class Point {
 public:
-
   /// @return Point::_value
-  [[nodiscard]] int my_method() const;
+  [[nodiscard]] auto my_method() const -> int;
 
 private:
-  int _value = 1;
+  int Value= 1;
 };
 }  // namespace pf
 

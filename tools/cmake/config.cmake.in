@@ -1,11 +1,10 @@
 set(@CMAKE_PROJECT_NAME@_VERSION @CMAKE_PROJECT_VERSION@)
 @PACKAGE_INIT@
 
-# This allows us to do something like
+# '@PROJECT_NAME@_FIND_COMPONENTS' is filled with all the components that the user
+# has requested. So for example :
 # find_package(pitchfork REQUIRED COMPONENTS Core Opt)
-# The important things here are ${@PROJECT_NAME@_FIND_COMPONENTS} and the fact that
-# this variable will be filled with all existing "*Config.cmake" that begins by "@PROJECT_NAME@"
-# (except the main config file, that is this one)
+# ${@PROJECT_NAME@_FIND_COMPONENTS} == "Core;Opt"
 foreach(component ${@PROJECT_NAME@_FIND_COMPONENTS})
-  include("${CMAKE_CURRENT_LIST_DIR}/@CMAKE_PROJECT_NAME@${component}Config.cmake")
+  include("${CMAKE_CURRENT_LIST_DIR}/@CMAKE_PROJECT_NAME@-${component}-Targets.cmake")
 endforeach()

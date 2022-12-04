@@ -36,12 +36,6 @@ There is two main "implementation" possible for the pitchfork layout, namely mer
 while the other tries to put headers and test as close as possible to the compile unit. I think the separated layout respects modern CMake and
 C++ philosophy more so my implementation will be separated.
 
-### Differences between the pitchfork layout and my implementation
-
-According to the documentation, submodules cannot have subdirectories. I however added an example of a submodule with a subdirectory representing a namespace.
-This is because I believe that if your logical and physical layout are alike it will be much simpler to understand what is going on. I'm still unsure if this
-is a good thing or not but since I didn't find any corner case where this is annoying, I'll keep this more structured approach for now.
-
 ## How to use it ?
 
 This repo is mainly designed to be a complex example to either browse or directly copy-paste to start a new project.
@@ -49,26 +43,32 @@ There are however a few files that are worth mentioning because they contains us
 
 - [README.md](README.md) : this README of course :)
 - [CMakeLists.txt](CMakeLists.txt) : for how to setup, install and package a project
-- [libs/core/CMakeLists.txt](libs/core/CMakeLists.txt) : for how to setup and install a target
 - [docs/CMakeLists.txt](docs/CMakeLists.txt) : for how to build a doxygen documentation using CMake
+- [tools/cmake/pfModules.cmake](tools/cmake/pfModules.cmake) : the meat and butter of this cmake implementation.
 
 Also, files such as `.clang-format`, `.clang-tidy`, `.gitignore` or the `LICENSE` for example are not noise that has been
 added for fun : they are a full part of this project and should be considered like so when creating your own project.
 
 ## List of goals of the repository
 
-- [x] clean and modern CMake infrastructure for a simple separated pitchfork layout
+- [x] Implementing clean and modern CMake infrastructure for a simple separated pitchfork layout
   - [x] implement submodules and optional submodules
   - [x] make submodules available through the `COMPONENTS` keyword of CMake `find_package`
   - [x] make the same code compilable against both build and install directories
   - [x] export targets, library configuration and version
-- [x] show simple testing using CTest
-- [x] show simple packaging using CPack
-- [x] implement a complete pitchfork layout
+  - [ ] make the packaging/handling of dependencies as simple and automated as possible
+  - [ ] possible to use both a static libs install and a shared libs install in the same consumer project
+  - [ ] possible to integrate fragments into fragments
+  - [ ] project can be consumed either using `add_subdirectory` or `find_package` (not tested)
+- [x] Showing simple testing using CTest
+- [x] Showing simple packaging using CPack
+- [x] Implementing a complete pitchfork layout
   - [x] add an `extras/` directory for holding optional submodules disabled by defaults
   - [x] add a `data/` folder for holding any data that is not code-related
   - [x] add an `external/` folder that handles third-party libraries
   - [x] add integration tests
+- [ ] Having comments and documentation about why/how this CMake implementation is what it is, as well as development guidelines for CMake code (syntax, philosophy, etc)
+- [ ] Being a usable template for other developers by using [cookiecutter](https://github.com/cookiecutter/cookiecutter)
 
 Some additional features unrelated to the pitchfork layout but that should exists for every open-source C++ project (imo) :
 
@@ -76,12 +76,13 @@ Some additional features unrelated to the pitchfork layout but that should exist
 - [x] use a testing framework for more comprehensive testing (Catch2 in this case)
 - [x] generate API documentation with Doxygen
 - [x] use SPDX headers in source files in order to track licensing and copyright informations
-- [ ] simple CI integration (either using [GitHub Actions](https://docs.github.com/en/actions), [SonarCloud](https://www.sonarsource.com/products/sonarcloud/) or both)
+- [ ] simple CI integration (either using [GitHub Actions](https://docs.github.com/en/actions), [SonarCloud](https://www.sonarsource.com/products/sonarcloud/), ...)
   - [ ] basic pipeline using CTest
   - [ ] documentation and installation testing
   - [ ] show code coverage
   - [ ] enforce clang rules
 - [ ] use git hooks to enforce clear and usefull commit messages (see https://www.conventionalcommits.org/en/v1.0.0/)
+- [ ] use an existing solution for managing third parties (Conan, vcpkg, CPM, ...)
 
 ## Layout explanation
 
@@ -120,6 +121,7 @@ Some additional features unrelated to the pitchfork layout but that should exist
 |  |  |  └─ ...
 |  |  └─ ...
 |  └─ ...
+└─ extras/                  -> Similar to the "libs" dir, but every submodules here are optional and turned off by default.
 ```
 
 ## Contributing

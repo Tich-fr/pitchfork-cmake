@@ -4,7 +4,7 @@ project(SimplePitchforkExample LANGUAGES CXX)
 # If example is not built from the pitchfork toplevel CMakeLists then try to look for the library
 get_property(top_level DIRECTORY PROPERTY PARENT_DIRECTORY)
 if(NOT top_level)
-  find_package(pitchfork REQUIRED CONFIG COMPONENTS Core Opt)
+  find_package(pitchfork REQUIRED CONFIG COMPONENTS core opt)
 endif()
 
 add_executable(${PROJECT_NAME} main.cxx)

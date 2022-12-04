@@ -7,9 +7,9 @@
 
 TEST_CASE("Dummy Node test", "[pf::dag::Node]")
 {
-    pf::dag::Node node;
-    REQUIRE(node.value() == 1);
+  pf::dag::Node node;
+  REQUIRE(node.value() == 1);
 
-    node.increment();
-    REQUIRE(node.value() == 2);
+  node.increment();
+  REQUIRE(node.value() == 2);
 }

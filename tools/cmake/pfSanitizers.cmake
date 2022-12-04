@@ -1,0 +1,26 @@
+set(pitchfork_TOOL_ENABLE_SANITIZERS "None" CACHE STRING "Sanitizers to enable on targets of this project. 'Common' contains address, leak and UB sanitizers.")
+set_property(CACHE pitchfork_TOOL_ENABLE_SANITIZERS PROPERTY STRINGS None Common Thread Memory)
+
+function(pf_target_sanitize target)
+  if(MSVC)
+    message(WARNING
+      "Sanitizers are only supported for Clang or GNU-like compilers for now.")
+    return()
+  endif()
+
+  if (${pitchfork_TOOL_ENABLE_SANITIZERS} STREQUAL "Common")
+    set(flags -fsanitize=address -fsanitize=leak -fsanitize=undefined)
+  elseif(${pitchfork_TOOL_ENABLE_SANITIZERS} STREQUAL "Thread")
+    set(flags -fsanitize=thread)
+  elseif(${pitchfork_TOOL_ENABLE_SANITIZERS} STREQUAL "Memory")
+    set(flags -fsanitize=memory)
+  elseif(${pitchfork_TOOL_ENABLE_SANITIZERS} STREQUAL "None")
+    return()
+  else()
+    message(FATAL_ERROR "Unknown sanitizer option")
+    return()
+  endif()
+
+  target_compile_options(${target} INTERFACE "${flags}")
+  target_link_options(${target} INTERFACE "${flags}")
+endfunction()
