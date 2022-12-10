@@ -5,8 +5,8 @@
 
 namespace pf {
 //-----------------------------------------------------------------------------
-int Hidden::my_method() const
+auto Hidden::my_method() const -> int
 {
   return _value;
 }
-}  // namespace pf::math
+}  // namespace pf

@@ -5,7 +5,7 @@
 
 namespace pf {
 //-----------------------------------------------------------------------------
-int Point::my_method() const
+auto Point::my_method() const -> int
 {
   return _value;
 }

@@ -1,12 +1,12 @@
 # Simple project setup
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.19)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/tools/cmake")
 
 project(pitchfork
   LANGUAGES CXX
   DESCRIPTION "A CMake Implementation Of The Pitchfork Layout"
   VERSION 0.0.1)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -15,7 +15,8 @@ set(pitchfork_bin_includedir "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_INCLUDEDIR}")
 
 include(CTest)
 
-# Handle sub directories
+option(BUILD_SHARED_LIBS "Build shared library" ON)
+
 add_subdirectory(external)
 
 add_subdirectory(libs)

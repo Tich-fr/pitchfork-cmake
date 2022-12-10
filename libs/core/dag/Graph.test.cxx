@@ -7,6 +7,6 @@
 
 TEST_CASE("Dummy Graph test", "[pf::dag::Graph]")
 {
-    pf::dag::Graph graph;
-    REQUIRE(graph.value() == 1);
+  pf::dag::Graph graph_val;
+  REQUIRE(graph_val.value() == 1);
 }

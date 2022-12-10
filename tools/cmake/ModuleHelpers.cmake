@@ -53,7 +53,7 @@ function(split_unit_files)
 endfunction()
 
 # =============================================================================
-# Function: aggregate_unit_tests
+# Function: register_unit_tests
 #
 # Register a list of unitary test file against CTest and create their executable
 #
@@ -62,7 +62,6 @@ endfunction()
 #   (2:testList) all unit tests, as a list
 # -----------------------------------------------------------------------------
 function(register_unit_tests submoduleName testList)
-  message( "inside ${testList}" )
   foreach(testFile ${testList})
     get_filename_component(className ${testFile} NAME_WE)
     set(testName "${submoduleName}_${className}")

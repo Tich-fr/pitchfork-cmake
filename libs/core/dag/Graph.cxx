@@ -5,13 +5,13 @@
 
 namespace pf::dag {
 //-----------------------------------------------------------------------------
-int Graph::value() const
+auto Graph::value() const -> int
 {
   return _value;
 }
 
 //-----------------------------------------------------------------------------
-int Graph::my_method(Node& node) const
+auto Graph::my_method(Node& node) const -> int
 {
   node.increment();
   return node.value() + _value;

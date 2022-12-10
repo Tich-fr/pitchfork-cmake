@@ -9,12 +9,13 @@ namespace pf::widgets {
 //-----------------------------------------------------------------------------
 MainWidget::MainWidget(QWidget* parent)
   : QLabel(parent)
+  , _graph()
 {
   const QString value = QString::number(_graph.value());
   this->setText("Hello World!\nCurrent Calue is " + value);
 
-  constexpr int MARGIN = 20;
-  this->setMargin(MARGIN);
+  constexpr int margin = 20;
+  this->setMargin(margin);
 }
 
 }  // namespace pf::widgets

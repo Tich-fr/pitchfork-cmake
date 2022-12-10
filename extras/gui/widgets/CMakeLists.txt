@@ -8,7 +8,7 @@ split_unit_files(
   OUT_TESTS tests
   )
 
-add_library(${target_name} OBJECT ${classes})
+add_library(${target_name} SHARED ${classes})
 add_library(pitchfork::widgets ALIAS ${target_name})
 
 target_include_directories(${target_name}

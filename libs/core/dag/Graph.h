@@ -14,7 +14,6 @@ namespace pf::dag {
 /// (bla bla bla).
 class Graph {
 public:
-
   /// @brief dummy method
   ///
   /// Increment the value of the given node and return
@@ -22,10 +21,10 @@ public:
   ///
   /// @param[out] node dummy output parameter
   /// @return Graph::_value + node.value()
-  int my_method(Node& node) const;
+  auto my_method(Node& node) const -> int;
 
   /// @return Graph::_value
-  [[nodiscard]] int value() const;
+  [[nodiscard]] auto value() const -> int;
 
 private:
   int _value = 1;  //< some useless integer value
