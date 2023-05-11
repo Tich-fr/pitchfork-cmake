@@ -2,7 +2,7 @@ find_package(Doxygen REQUIRED)
 
 # Build public API documentation with doxygen.
 # Configuration is done by editing `Doxyfile.in`
-file(GLOB_RECURSE all_public_headers ${pitchfork_bin_includedir}/${CMAKE_PROJECT_NAME}/*.h)
+file(GLOB_RECURSE all_public_headers ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_INCLUDEDIR}/${CMAKE_PROJECT_NAME}/*.h)
 
 set(pitchfork_DOXYGEN_INPUT_DIR ${CMAKE_SOURCE_DIR}/libs)
 set(pitchfork_DOXYFILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)

@@ -1,5 +1,5 @@
 # Simple project setup
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.19)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/tools/cmake")
 
 project(pitchfork
@@ -10,24 +10,28 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# include standard cmake capabilities
 include(GNUInstallDirs)
-set(pitchfork_bin_includedir "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_INCLUDEDIR}")
-
 include(CTest)
 
-# Handle sub directories
+# project-wide settings
+include(pfClangTidy)         # pitchfork_TOOL_ENABLE_CLANG_TIDY
+include(pfIWYU)              # pitchfork_TOOL_ENABLE_IWYU
+include(pfLWYU)              # pitchfork_TOOL_ENABLE_LWYU
+include(pfSanitizers)        # pitchfork_TOOL_ENABLE_SANITIZERS
+option(BUILD_SHARED_LIBS "Build libraries as shared libraries by default." ON)
+option(BUILD_DOCUMENTATION "Build documentation tree" OFF)
+option(BUILD_EXAMPLES "Build examples tree" OFF)
+
+# build sources
 add_subdirectory(external)
-
 add_subdirectory(libs)
-
 add_subdirectory(extras)
 
-option(BUILD_DOCUMENTATION "Build documentation tree" OFF)
 if(BUILD_DOCUMENTATION)
   add_subdirectory(docs)
 endif()
 
-option(BUILD_EXAMPLES "Build examples tree" OFF)
 if(BUILD_EXAMPLES)
   add_subdirectory(examples)
 endif()
@@ -41,8 +45,7 @@ configure_package_config_file(
     "${CMAKE_INSTALL_LIBDIR}/cmake/${CMAKE_PROJECT_NAME}"
   )
 
-write_basic_package_version_file(
-  "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}ConfigVersion.cmake"
+write_basic_package_version_file("${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}ConfigVersion.cmake"
   VERSION "${CMAKE_PROJECT_VERSION}"
   COMPATIBILITY SameMajorVersion
   )
@@ -53,6 +56,8 @@ install(
     "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}ConfigVersion.cmake"
   DESTINATION
     "${CMAKE_INSTALL_LIBDIR}/cmake/${CMAKE_PROJECT_NAME}"
+  COMPONENT
+    ${CMAKE_PROJECT_NAME}_Devel
   )
 
 # Packaging

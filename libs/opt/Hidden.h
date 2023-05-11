@@ -11,12 +11,11 @@ namespace pf {
 /// (bla bla bla)
 class Hidden {
 public:
-
   /// @return Hidden::_value
   [[nodiscard]] int my_method() const;
 
 private:
-  int _value = 1;
+  int _value;
 };
 }  // namespace pf
 

@@ -1,0 +1,15 @@
+option(pitchfork_TOOL_ENABLE_CLANG_TIDY "Enable usage of Clang Tidy through CMake integration." OFF)
+
+if(pitchfork_TOOL_ENABLE_CLANG_TIDY)
+  find_program(CLANGTIDY_PROGRAM clang-tidy)
+  mark_as_advanced(FORCE "CLANGTIDY_PROGRAM")
+  if(NOT CLANGTIDY_PROGRAM)
+    message(WARNING "clang-tidy requested but executable not found")
+  endif()
+endif()
+
+function(pf_target_check_clangtidy target)
+  if (CLANGTIDY_PROGRAM)
+    set_target_properties(${target} PROPERTIES CXX_CLANG_TIDY "${CLANGTIDY_PROGRAM};--header-filter=${CMAKE_CURRENT_SOURCE_DIR}/.*;--use-color")
+  endif()
+endfunction()

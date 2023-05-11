@@ -1,4 +1,4 @@
 set(tests
   IntegrationTestDummy.cxx)
 
-register_unit_tests(pitchforkCore "${tests}")
+pf_add_submodule_tests(pitchforkCore "${tests}")
